@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Yahtzee.MainPage">
+
+    <StackLayout BackgroundColor="#ffffff">
+        <Label Text="Yahtzee" HorizontalOptions="Center" FontSize="60" TextColor="#ffbf1c"></Label>
+        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+            <Label x:Name="points" Text="00" FontSize="70" TextColor="#636363"></Label>
+            <Label Text="pts" FontSize="30" VerticalTextAlignment="End" TextColor="#636363"></Label>
+            <Label x:Name="turn" Text="1/15" HorizontalOptions="EndAndExpand" Margin="10, 30, 0, 50"></Label>
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,100,0,0">
+            <Grid HorizontalOptions="Center" VerticalOptions="Center" RowSpacing="40">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ImageButton x:Name="one" ClassId="1" Clicked="OptionChoose" Source="dice_one.png" WidthRequest="50" Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreOne" Grid.Row="0"  Grid.Column="0" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label x:Name="ScoreTempOne" Grid.Row="0" Grid.Column="0"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="two" ClassId="2" Clicked="OptionChoose" Source="dice_two.png"  WidthRequest="50" Grid.Row="0" Grid.Column="1" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreTwo" Grid.Row="0" Grid.Column="1" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Label x:Name="ScoreTempTwo" Grid.Row="0" Grid.Column="1"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="three" ClassId="3" Clicked="OptionChoose" Source="dice_three.png" WidthRequest="50" Grid.Row="0" Grid.Column="2" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreThree" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="2"/>
+                <Label x:Name="ScoreTempThree" Grid.Row="0" Grid.Column="2"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="four" ClassId="4" Clicked="OptionChoose" Source="dice_four.png" WidthRequest="50" Grid.Row="0" Grid.Column="3" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreFour" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="3"/>
+                <Label x:Name="ScoreTempFour" Grid.Row="0" Grid.Column="3"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="five" ClassId="5" Clicked="OptionChoose" Source="dice_five.png" WidthRequest="50" Grid.Row="0" Grid.Column="4" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreFive" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="0" Grid.Column="4"/>
+                <Label x:Name="ScoreTempFive" Grid.Row="0" Grid.Column="4"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="six" ClassId="6" Clicked="OptionChoose" Source="dice_six.png" WidthRequest="50" Grid.Row="1" Grid.Column="0" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreSix" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.Column="0"/>
+                <Label x:Name="ScoreTempSix" Grid.Row="1" Grid.Column="0"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="paire" ClassId="7" Clicked="OptionChoose" Source="dice_Paire.png" WidthRequest="50" Grid.Row="1" Grid.Column="1" BackgroundColor="Transparent"/>
+                <Label x:Name="ScorePair" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.Column="1"/>
+                <Label x:Name="ScoreTempPair" Grid.Row="1" Grid.Column="1"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="brelan" ClassId="8" Clicked="OptionChoose" Source="dice_Brelan.png" WidthRequest="50" Grid.Row="1" Grid.Column="2" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreBrelan" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.Column="2"/>
+                <Label x:Name="ScoreTempBrelan" Grid.Row="1" Grid.Column="2"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="xpaire" ClassId="9" Clicked="OptionChoose" Source="dice_2xPaire.png" WidthRequest="50" Grid.Row="1" Grid.Column="3" BackgroundColor="Transparent"/>
+                <Label x:Name="ScorexPaire" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.Column="3"/>
+                <Label x:Name="ScoreTempxPaire" Grid.Row="1" Grid.Column="3"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="carre" ClassId="10" Clicked="OptionChoose" Source="dice_Carre.png" WidthRequest="50" Grid.Row="1" Grid.Column="4" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreCarre" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="1" Grid.Column="4"/>
+                <Label x:Name="ScoreTempCarre" Grid.Row="1" Grid.Column="4"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+
+                <ImageButton x:Name="full" ClassId="11" Clicked="OptionChoose" Source="dice_full.png" WidthRequest="50" Grid.Row="2" Grid.Column="0" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreFull" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2" Grid.Column="0"/>
+                <Label x:Name="ScoreTempFull" Grid.Row="2" Grid.Column="0"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="litleSuite" ClassId="12" Clicked="OptionChoose" Source="dice_PetiteSuite.png" WidthRequest="50" Grid.Row="2" Grid.Column="1" BackgroundColor="Transparent"/>
+                <Label x:Name="ScorelitleSuite" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2" Grid.Column="1"/>
+                <Label x:Name="ScoreTempLitleSuite" Grid.Row="2" Grid.Column="1"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="bigSuite" ClassId="13" Clicked="OptionChoose" Source="dice_GrandeSuite.png" WidthRequest="50" Grid.Row="2" Grid.Column="2" BackgroundColor="Transparent"/>
+                <Label x:Name="ScorebigSuite" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2" Grid.Column="2"/>
+                <Label x:Name="ScoreTempbigSuite" Grid.Row="2" Grid.Column="2"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="chance" ClassId="14" Clicked="OptionChoose" Source="dice_Chance.png" WidthRequest="50" Grid.Row="2" Grid.Column="3" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreChance" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2" Grid.Column="3"/>
+                <Label x:Name="ScoreTempChance" Grid.Row="2" Grid.Column="3"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+
+                <ImageButton x:Name="yhatzee" ClassId="15" Clicked="OptionChoose" Source="dice_Chance2.png" WidthRequest="50" Grid.Row="2" Grid.Column="4" BackgroundColor="Transparent"/>
+                <Label x:Name="ScoreYhatzee" Text="0" IsVisible="false" FontAttributes="Bold" FontSize="30" TextColor="#3269a8"  HorizontalOptions="Center" VerticalOptions="Center" Grid.Row="2" Grid.Column="4"/>
+                <Label x:Name="ScoreTempYhatzee" Grid.Row="2" Grid.Column="4"  Text="0" IsVisible="false" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand"></Label>
+            </Grid>
+
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="FillAndExpand" Margin="0,50,0,0">
+            <Grid HorizontalOptions="Center" VerticalOptions="Center" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <ImageButton x:Name="dice1" ClassId="1" Clicked="LockDice" BackgroundColor="Transparent" WidthRequest="55" Grid.Row="0" Grid.Column="0" ></ImageButton>
+
+                <ImageButton x:Name="dice2" ClassId="2" Clicked="LockDice" BackgroundColor="Transparent" WidthRequest="55" Grid.Row="0" Grid.Column="1" ></ImageButton>
+
+                <ImageButton x:Name="dice3" ClassId="3" Clicked="LockDice" BackgroundColor="Transparent" WidthRequest="55" Grid.Row="0" Grid.Column="2" ></ImageButton>
+
+                <ImageButton x:Name="dice4" ClassId="4" Clicked="LockDice" BackgroundColor="Transparent" WidthRequest="55" Grid.Row="0" Grid.Column="3" ></ImageButton>
+
+                <ImageButton x:Name="dice5" ClassId="5" Clicked="LockDice" BackgroundColor="Transparent" WidthRequest="55" Grid.Row="0" Grid.Column="4" ></ImageButton>
+
+            </Grid>
+
+        </StackLayout>
+
+        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" Margin="0,30,0,0">
+            <Button Clicked="GenerateDice" BackgroundColor="#f05151" HeightRequest="60" WidthRequest="350"></Button>
+            <Label x:Name="move" Text="0/3" VerticalOptions="Center"></Label>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>
