@@ -108,7 +108,7 @@ namespace Yahtzee.Model
 
         public void StartImg()
         {
-            this._img = "dice_Chance2.png";
+            this._id.Source = "dice_Chance2.png";
         }
     }
 }

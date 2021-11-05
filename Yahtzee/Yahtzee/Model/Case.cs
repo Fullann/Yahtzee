@@ -14,6 +14,7 @@ namespace Yahtzee.Model
         public Xamarin.Forms.Label _tempScore;
         public Xamarin.Forms.Label _Score;
         public bool _isSet;
+        public bool _isYahtzee;
         public int _score = 0;
 
         public int Score
@@ -34,6 +35,8 @@ namespace Yahtzee.Model
             this._tempScore = tempScore;
             this._Score = Score;
             this._isSet = false;
+            this._isYahtzee = false;
+
         }
     }
 }

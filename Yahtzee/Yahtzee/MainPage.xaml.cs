@@ -19,6 +19,7 @@ namespace Yahtzee
         //List de toutes les cases
         List<Case> cases;
 
+        //Variables
         byte _move = 0;
         byte _maxMove = 3;
         byte _turn = 1;
@@ -27,43 +28,34 @@ namespace Yahtzee
         public MainPage()
         {
             InitializeComponent();
-
             //Create Dice
-            Dice d1 = new Dice(dice1);
-            Dice d2 = new Dice(dice2);
-            Dice d3 = new Dice(dice3);
-            Dice d4 = new Dice(dice4);
-            Dice d5 = new Dice(dice5);
-
-            //Add dices
             dices = new List<Dice>
             {
-                d1,d2,d3,d4,d5
+                new Dice(dice1)
+                ,new Dice(dice2)
+                ,new Dice(dice3)
+                ,new Dice(dice4)
+                ,new Dice(dice5)
             };
 
             //Create Case
-            Case c1 = new Case(one, ScoreTempOne, ScoreOne);
-            Case c2 = new Case(two, ScoreTempTwo, ScoreTwo);
-            Case c3 = new Case(three, ScoreTempThree, ScoreThree);
-            Case c4 = new Case(four, ScoreTempFour, ScoreFour);
-            Case c5 = new Case(five, ScoreTempFive, ScoreFive);
-
-            Case c6 = new Case(six, ScoreTempSix, ScoreSix);
-            Case c7 = new Case(paire, ScoreTempPair, ScorePair);
-            Case c8 = new Case(brelan, ScoreTempBrelan, ScoreBrelan);
-            Case c9 = new Case(xpaire, ScoreTempxPaire, ScorexPaire);
-            Case c10 = new Case(carre, ScoreTempCarre, ScoreCarre);
-
-            Case c11 = new Case(full, ScoreTempFull, ScoreFull);
-            Case c12 = new Case(litleSuite, ScoreTempLitleSuite, ScorelitleSuite);
-            Case c13 = new Case(bigSuite, ScoreTempbigSuite, ScorebigSuite);
-            Case c14 = new Case(chance, ScoreTempChance, ScoreChance);
-            Case c15 = new Case(yhatzee, ScoreTempYhatzee, ScoreYhatzee);
-
-            //Add cases
             cases = new List<Case>
             {
-                c1,c2,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15
+                new Case(one, ScoreTempOne, ScoreOne),
+                new Case(two, ScoreTempTwo, ScoreTwo),
+                new Case(three, ScoreTempThree, ScoreThree),
+                new Case(four, ScoreTempFour, ScoreFour),
+                new Case(five, ScoreTempFive, ScoreFive),
+                new Case(six, ScoreTempSix, ScoreSix),
+                new Case(paire, ScoreTempPair, ScorePair),
+                new Case(brelan, ScoreTempBrelan, ScoreBrelan),
+                new Case(xpaire, ScoreTempxPaire, ScorexPaire),
+                new Case(carre, ScoreTempCarre, ScoreCarre),
+                new Case(full, ScoreTempFull, ScoreFull),
+                new Case(litleSuite, ScoreTempLitleSuite, ScorelitleSuite),
+                new Case(bigSuite, ScoreTempbigSuite, ScorebigSuite),
+                new Case(chance, ScoreTempChance, ScoreChance),
+                new Case(yhatzee, ScoreTempYhatzee, ScoreYhatzee)
             };
         }
 
@@ -101,8 +93,9 @@ namespace Yahtzee
         {
             //Récupération de l'image bouton
             ImageButton img = (ImageButton)sender;
+
             //On l active ou pas
-            dices[int.Parse(img.ClassId) - 1]._active = dices[Int32.Parse(img.ClassId) - 1]._active == true ? false : true;
+            dices[int.Parse(img.ClassId) - 1]._active = dices[Int32.Parse(img.ClassId) - 1]._active != true;
             dices[int.Parse(img.ClassId) - 1].LockImage();
 
             //On passe dans toute les cases pour afficher les scores temporaires
@@ -129,7 +122,6 @@ namespace Yahtzee
                                 }
                             }
                         }
-                        
                     }
                     //Si c est un event autre
                     else
@@ -147,7 +139,7 @@ namespace Yahtzee
                             }
                         }
                         //On affiche le score temporaire
-                        c._tempScore.Text = CheckScore(c,numero).ToString();
+                        c._tempScore.Text = CheckScore(c, numero).ToString();
                     }
 
                     //On affiche les valeurs temporaires
@@ -209,6 +201,7 @@ namespace Yahtzee
                         numero.Add(dice.Value);
                     }
                 }
+
                 //Récupération et affichage du score
                 int score = CheckScore(actuCase, numero);
                 actuCase._Score.Text = score.ToString();
@@ -233,6 +226,9 @@ namespace Yahtzee
             }
         }
 
+        /// <summary>
+        /// End Turn
+        /// </summary>
         private void EndTurn()
         {
             foreach (Dice dice in dices)
@@ -254,20 +250,19 @@ namespace Yahtzee
             largestToSmallest lts = new largestToSmallest();
 
             int result = 0;
+
             //Switch sur tout les events
             switch (int.Parse(actuCase._id.ClassId))
             {
                 //Paire
                 case 7:
-                    //TODO 
                     if (numero.Count() >= 2)
                     {
-                        /*if (numero[0] == numero[1] || numero[0] == numero[2] || numero[0] == numero[3] || numero[0] == numero[4] ||
-                            numero[1] == numero[2] || numero[1] == numero[3] || numero[1] == numero[4] ||
-                            numero[2] == numero[3] || numero[2] == numero[4] || 
-                            numero[3] == numero[4])*/
+                        result =  IfMultipleValues(AssembleValues(numero.ToArray()), 2);
+
+                        if(result != -1)
                         {
-                            result = total(numero);
+                            return result;
                         }
                     }
                         break;
@@ -289,14 +284,13 @@ namespace Yahtzee
                     break;
                 //Double paire
                 case 9:
-                    //TODO 
                     if (numero.Count() >= 4)
                     {
-                        if (numero[0] == numero[1] && numero[2] == numero[3] || numero[0] == numero[1] && numero[2] == numero[4] ||
-                            numero[0] == numero[2] && numero[1] == numero[3] || numero[0] == numero[2] && numero[1] == numero[3]
-                            )
+                        result = IfMultipleValues(AssembleValues(numero.ToArray()), 2, 2);
+
+                        if (result != -1)
                         {
-                            result = total(numero);
+                            return result;
                         }
                     }
                     break;
@@ -381,7 +375,14 @@ namespace Yahtzee
                     {
                         if (numero[0] == numero[1] && numero[1] == numero[2] && numero[2] == numero[3] && numero[3] == numero[4])
                         {
-                            result = 50;
+                            if (cases[14]._isYahtzee)
+                            {
+                                result = 100;
+                            }
+                            else
+                            {
+                                result = 50;
+                            }
                         }
                     }
                        
@@ -437,6 +438,75 @@ namespace Yahtzee
             
 
             return number;
+        }
+
+        /// <summary>
+        /// On assemble les valeurs
+        /// </summary>
+        /// <param name="numbers">Liste des valeurs</param>
+        /// <returns>On retourne la liste des nombre assemblés</returns>
+        public static Dictionary<byte, int> AssembleValues(int[] numbers)
+        {
+            //Dictionnaire de valeurs
+            Dictionary<byte, int> values = new Dictionary<byte, int>();
+
+            //On boucle les nombres
+            foreach (byte number in numbers)
+            {
+                //Si on trouve la clé
+                if (values.ContainsKey(number))
+                {
+                    //On incrémente
+                    values[number]++;
+                }
+                else
+                {
+                    //On ajoute un element
+                    values.Add(number, 1);
+                }
+            }
+
+            //On retourne les valeurs
+            return values;
+        }
+
+        /// Check si il y a plusieurs valeurs dans une liste
+        /// </summary>
+        /// <param name="values">Liste de valeurs</param>
+        /// <param name="total">Total des valeurs</param>
+        /// <returns>Retourne si il y a assez de valeur ou pas</returns>
+        public static int IfMultipleValues(Dictionary<byte, int> values, params int[] total)
+        {
+            //On crée la somme
+            int sum = 0;
+
+            //On boucle les valeurs
+            foreach (int number in total)
+            {
+                //On récupére les clés par rapport au nombre de valeur qu'on veut
+                IEnumerable<byte> keys = values.Where(x => x.Value == number).Select(x => x.Key);
+
+                //Si on a trouvé des valeurs
+                if (keys.Count() > 0)
+                {
+                    //On récupére la plus grande klé
+                    byte key = keys.Max();
+
+                    //On ajoute le somme des valeurs
+                    sum += values[key] * key;
+
+                    //On retire la clé des valeurs
+                    values.Remove(key);
+                }
+                else
+                {
+                    //On retourne -1 (Not Found)
+                    return -1;
+                }
+            }
+
+            //On retourne la somme des valeurs
+            return sum;
         }
     }
 }
