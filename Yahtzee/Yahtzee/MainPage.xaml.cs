@@ -148,6 +148,23 @@ namespace Yahtzee
                         c._tempScore.IsVisible = true;
                     }
                 }
+                //Si c est un 2eme yahtzee
+                else if (c == cases[14]) { 
+                    // Liste des valeurs de tous les dés
+                        List<int> numero = new List<int>();
+
+                    foreach (Dice dice in dices)
+                    {
+                        //si le dé est actif
+                        if (!dice._active)
+                        {
+                            //on ajoute le numéro
+                            numero.Add(dice.Value);
+                        }
+                    }
+
+                    c._tempScore.Text = CheckScore(c, numero).ToString();
+                }
             }
         }
 
@@ -201,9 +218,17 @@ namespace Yahtzee
                         numero.Add(dice.Value);
                     }
                 }
-
-                //Récupération et affichage du score
+                
+                //Récupération
                 int score = CheckScore(actuCase, numero);
+
+                //Set if yahtzee
+                if (actuCase == cases[14])
+                {
+                    actuCase._isYahtzee = true;
+                }
+
+                //affichage du score
                 actuCase._Score.Text = score.ToString();
                 actuCase.Score += score;
             }
@@ -259,11 +284,6 @@ namespace Yahtzee
                     if (numero.Count() >= 2)
                     {
                         result =  IfMultipleValues(AssembleValues(numero.ToArray()), 2);
-
-                        if(result != -1)
-                        {
-                            return result;
-                        }
                     }
                         break;
                 //Brelan
@@ -288,10 +308,6 @@ namespace Yahtzee
                     {
                         result = IfMultipleValues(AssembleValues(numero.ToArray()), 2, 2);
 
-                        if (result != -1)
-                        {
-                            return result;
-                        }
                     }
                     break;
                 //Carré
@@ -388,8 +404,15 @@ namespace Yahtzee
                        
                     break;
             }
-
-            return result;
+            //Check if possible and return
+            if(result != -1)
+            {
+                return result;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         /// <summary>
