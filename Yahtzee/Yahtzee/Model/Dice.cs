@@ -47,7 +47,7 @@ namespace Yahtzee.Model
 
         public byte GenerateRandom()
         {
-            this._value = (byte)new Random().Next(1, 6);
+            this._value = (byte)new Random().Next(1, 7);
             return this._value;
         }
 

@@ -74,7 +74,6 @@ namespace Yahtzee
 
                 //Affichage
                 move.Text = _move + "/" + _maxMove;
-                turn.Text = _turn + "/" + _maxTurn;
 
                 //Affichage des nouveaux dés
                 foreach (Dice dice in dices)
@@ -173,7 +172,7 @@ namespace Yahtzee
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OptionChoose(object sender, EventArgs e)
+        private void OptionChoose (object sender, EventArgs e)
         {
             //Récupération de l image bouton
             ImageButton img = (ImageButton)sender;
@@ -237,8 +236,8 @@ namespace Yahtzee
             EndTurn();
 
             _move = 0;
-            //Add turn
-            _turn++;
+            
+           
             //Reset Points
             points.Text = "0";
 
@@ -249,12 +248,23 @@ namespace Yahtzee
                 //Reset all tempScore
                 c._tempScore.IsVisible = false;
             }
+
+            //Si la partie est finie
+            if (_turn == 15)
+            {
+                Navigation.PushAsync(new ScoreEnd(points.Text));
+                Navigation.RemovePage(this);
+            }
+
+            //Add turn
+            _turn++;
+            turn.Text = _turn + "/" + _maxTurn;
         }
 
         /// <summary>
         /// End Turn
         /// </summary>
-        private void EndTurn()
+        private void  EndTurn()
         {
             foreach (Dice dice in dices)
             {

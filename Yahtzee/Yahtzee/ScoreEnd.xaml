@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Yahtzee.ScoreEnd">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="score" HorizontalOptions="Center" FontSize="30" TextColor="#ffbf1c"></Label>
+            <ImageButton x:Name="one" ClassId="1" Clicked="NewParty" Source="restart.png" WidthRequest="50" Grid.Row="0" Grid.Column="0" BackgroundColor="Transparent"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

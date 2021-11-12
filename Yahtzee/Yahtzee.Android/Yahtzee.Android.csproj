@@ -83,7 +83,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\restart.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Yahtzee\Yahtzee.csproj">
       <Project>{7AAA51C8-3A50-4E7A-A83F-34216B411A9E}</Project>
