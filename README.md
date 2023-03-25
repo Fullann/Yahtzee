@@ -1,9 +1,11 @@
-# Yhatzee
+# Yahtzee
 
-## About this project
-Ce projet a été réaliser a l'ETML pour le module d'application mobile.Cette application a étée réaliser en C# avec Xamarin.
+## Introduction
+Ce projet a été réaliser dans le cadre d'un projet d'application mobile a l'ETML. Comme contrainte nous étions obliger d'utiliser du Xamrin.Ce projet est le jeux du yhatzee complétement créer par moi.
 
-## Install
-Just start .sln
-
-Ce projet n'est pas fini
+## Instalation
+Il vous suffit de cloner le répertoire
+```
+git clone https://github.com/Fullann/Yahtzee.git
+ ```
+Puis de double cliquer sur le .sln en ayant fais attention au paravant d'avoir visual studio d'installer sur votre machine avec l extention pour xamarin .Et le tour est jouer il ne vous rest plus qu'a build l'application sur votre téléphone android  et a vous les partie de yhatzee ;)
